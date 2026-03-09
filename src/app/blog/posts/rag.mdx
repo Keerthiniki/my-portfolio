@@ -1,0 +1,44 @@
+---
+title: "I Built a RAG System… and It Still Hallucinated 🤦‍♂️"
+publishedAt: "2025-07-20"
+summary: "Building a RAG system that retrieves knowledge faster than my brain."
+tag: "RAG"
+---
+
+When I first learned about Retrieval-Augmented Generation (RAG), I thought I had discovered the ultimate cheat code for AI hallucinations.
+
+“Just give the model documents,” they said.
+“It will only answer from the data,” they said.
+
+So I built a full RAG pipeline.
+
+The system had everything:
+document ingestion, chunking, embeddings, vector search, and a prompt that politely told the model “Please only answer from the context.”
+
+The result?
+
+The AI confidently invented information that did not exist in my documents.
+
+Amazing.
+
+After some investigation (and mild emotional damage), I realized RAG is not magic. It’s engineering.
+
+Here’s what actually mattered:
+
+First, chunking strategy. My initial chunks were too large, which meant the vector search returned irrelevant context.
+
+Second, embedding quality. Better embeddings improved retrieval dramatically.
+
+Third, retrieval filtering. I added similarity thresholds and reranking so the model only saw the most relevant content.
+
+Finally, prompt structure. Instead of politely asking the model to behave, I enforced stricter instructions and added fallback responses like “I don’t know based on the provided data.”
+
+Once these improvements were in place, the hallucinations dropped significantly.
+
+The biggest lesson?
+
+Building AI systems isn’t just about calling a model API. It’s about designing the entire pipeline around it.
+
+LLMs are powerful, but without the right architecture, they can still be confidently wrong.
+
+And honestly… that confidence is impressive.
