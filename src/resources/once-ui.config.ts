@@ -193,7 +193,9 @@ const schema: SchemaConfig = {
 
 // social links
 const sameAs: SameAsConfig = {
+  threads: "",
   linkedin: "https://www.linkedin.com/in/keerthana-kathiresan-b80629147/",
+  discord: "",
 };
 
 // social sharing configuration for blog posts
