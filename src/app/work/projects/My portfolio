@@ -1,0 +1,36 @@
+---
+title: "Semantic Cache RAG with Incremental Embedding Pipeline"
+publishedAt: "2025-07-15"
+summary: "Built a RAG system backed by a semantic cache and an incremental embedding pipeline, using Qdrant and sentence-transformers to avoid re-embedding unchanged content."
+images:
+  - "/images/projects/project-01/cover-04.jpg"
+link: "https://github.com/Keerthiniki/my-portfolio"
+team:
+  - name: "Keerthana Kathiresan"
+    role: "Lead Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/keerthana-kathiresan-b80629147/"
+---
+
+## Overview
+
+Semantic Cache RAG is a retrieval-augmented generation system designed around two ideas: a semantic cache that serves answers to semantically similar queries without re-running the full pipeline, and an incremental embedding pipeline that only embeds new or changed documents instead of reprocessing the entire corpus.
+
+Together these reduce both query-time latency and the cost of keeping a vector store up to date.
+
+## Key Features
+
+- **Semantic Caching**: Matches incoming queries against previously answered ones by embedding similarity, returning cached results when a close enough match exists rather than recomputing.
+- **Incremental Embedding Pipeline**: Detects new and modified documents and embeds only those, avoiding full re-indexing of the corpus on every update.
+- **Vector Storage with Qdrant**: Uses Qdrant as the vector database for fast similarity search over stored embeddings.
+- **sentence-transformers Embeddings**: Generates dense embeddings for both documents and queries using sentence-transformers models.
+
+## Technologies Used
+
+- **Qdrant**: Vector database for similarity search and embedding storage.
+- **sentence-transformers**: Embedding model for documents and queries.
+- **Python**: Core pipeline implementation.
+
+## Challenges and Learnings
+
+The interesting work was in the cache-hit logic — setting a similarity threshold that returns cached answers often enough to be worthwhile, without serving a cached response to a query that only looks similar but needs a different answer. The incremental pipeline also required reliable change detection so that updated documents actually re-embedded while untouched ones were skipped.
