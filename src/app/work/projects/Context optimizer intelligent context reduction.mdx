@@ -1,0 +1,37 @@
+---
+title: "Context Optimizer - Intelligent Context Reduction for RAG Pipelines"
+publishedAt: "2025-07-01"
+summary: "Built a FastAPI context-optimization pipeline combining BM25, semantic similarity, and recency decay to cut retrieval context by 40-74% without losing relevance."
+images:
+  - "/images/projects/project-01/cover-02.jpg"
+link: "https://github.com/Keerthiniki/my-portfolio"
+team:
+  - name: "Keerthana Kathiresan"
+    role: "Lead Developer"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://www.linkedin.com/in/keerthana-kathiresan-b80629147/"
+---
+
+## Overview
+
+Context Optimizer is a FastAPI-based pipeline that reduces the amount of context passed into a language model while preserving the most relevant information. It scores and ranks candidate chunks using a hybrid signal, then trims the context window down to what actually matters — cutting token usage and cost on every request.
+
+The component is designed as a pluggable `RetrievalStrategy` port, so it drops directly into the Memory AgentCore architecture rather than living as a standalone tool.
+
+## Key Features
+
+- **Hybrid Scoring**: Combines BM25 lexical matching, MiniLM semantic similarity, and a recency-decay factor to rank context chunks by genuine relevance rather than a single heuristic.
+- **Significant Context Reduction**: Achieves a 40-74% reduction in context size depending on query and corpus characteristics, directly lowering token cost and latency.
+- **Pluggable Architecture**: Implemented as a `RetrievalStrategy` port that embeds cleanly inside Memory AgentCore, keeping the optimizer decoupled and swappable.
+- **Tested End to End**: 41/41 tests passing across the scoring, ranking, and reduction logic.
+
+## Technologies Used
+
+- **FastAPI**: Async Python framework serving the optimization pipeline.
+- **BM25**: Lexical relevance scoring for keyword overlap.
+- **MiniLM (sentence-transformers)**: Semantic similarity scoring via sentence embeddings.
+- **Python**: Core implementation with a port/adapter (hexagonal) design.
+
+## Challenges and Learnings
+
+The main challenge was balancing three competing relevance signals so that one didn't dominate the others — a purely semantic ranking would drop exact keyword matches, while pure BM25 missed paraphrased content. Tuning the recency-decay weighting and validating it against a full test suite was key to getting consistent, predictable reduction across different query types.
