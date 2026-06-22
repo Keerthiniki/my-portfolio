@@ -3,7 +3,7 @@ title: "Semantic Cache RAG with Incremental Embedding Pipeline"
 publishedAt: "2025-07-15"
 summary: "Built a RAG system backed by a semantic cache and an incremental embedding pipeline, using Qdrant and sentence-transformers to avoid re-embedding unchanged content."
 images:
-  - "/images/projects/project-01/cover-04.jpg"
+  - "/images/projects/project-01/image06.jpg"
 link: "https://github.com/Keerthiniki/my-portfolio"
 team:
   - name: "Keerthana Kathiresan"
